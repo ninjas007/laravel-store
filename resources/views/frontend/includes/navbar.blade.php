@@ -3,8 +3,8 @@
   <div class="container">
 
     <!-- Brand -->
-    <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-      <strong class="blue-text">MDB</strong>
+    <a class="navbar-brand waves-effect" href="#">
+      <strong class="blue-text">STORE</strong>
     </a>
 
     <!-- Collapse -->
@@ -24,15 +24,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About MDB</a>
+          <a class="nav-link waves-effect" href="#">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-            target="_blank">Free download</a>
+          <a class="nav-link waves-effect" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">Free
-            tutorials</a>
+          <a class="nav-link waves-effect" href="#">Checkout</a>
         </li>
       </ul>
 

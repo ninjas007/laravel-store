@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductCategorySeeder extends Seeder
 {
@@ -13,19 +14,31 @@ class ProductCategorySeeder extends Seeder
     public function run()
     {
         DB::table('product_categories')->insert([
-        	'name' => 'All'
+            'uuid' => (string) Str::uuid(),
+        	'name' => 'All',
+            'sort_list' => 0,
+            'slug' => 'all'
         ]);
 
         DB::table('product_categories')->insert([
-        	'name' => 'Shirts'
+            'uuid' => (string) Str::uuid(),
+        	'name' => 'Shirts',
+            'sort_list' => 1,
+            'slug' => 'shirts'
         ]);
 
         DB::table('product_categories')->insert([
-        	'name' => 'Sport wears'
+            'uuid' => (string) Str::uuid(),
+        	'name' => 'Sport wears',
+            'sort_list' => 2,
+            'slug' => 'sport-wears'
         ]);
 
         DB::table('product_categories')->insert([
-        	'name' => 'Outwears'
+            'uuid' => (string) Str::uuid(),
+        	'name' => 'Outwears',
+            'sort_list' => 3,
+            'slug' => 'outwears'
         ]);
     }
 }

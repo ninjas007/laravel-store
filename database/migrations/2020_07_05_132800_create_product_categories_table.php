@@ -15,12 +15,18 @@ class CreateProductCategoriesTable extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid', 100);
             $table->string('name', 20);
+            $table->string('sort_list', 8);
+            $table->string('slug', 30);
             $table->timestamps();
         });
 
         Schema::table('products', function (Blueprint $table) {
-            $table->foreignId('category_id')->constrained('product_categories');
+            $table->foreignId('category_id')
+                ->nullable()
+                ->constrained('product_categories')
+                ->onDelete('set null');
         });
     }
 
