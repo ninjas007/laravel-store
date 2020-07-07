@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+use App\Product;
+
 class ProductController extends Controller
 {
     /**
@@ -14,7 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('backend.contents.products.index');
+        $data['products'] = Product::paginate(10);
+
+        return view('backend.contents.products.index', $data);
     }
 
     /**
@@ -24,7 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $data['categories'] = \App\ProductCategory::all();
+
+        return view('backend.contents.products.add', $data);
     }
 
     /**
@@ -35,7 +42,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'price' => 'required|integer',
+            'stock' => 'required|integer',
+            'category' => 'required|integer',
+            'path_image' => 'string|max:255'
+        ]);
+
+        $product = Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'category_id' => $request->category,
+            'path_image' => $request->path_image,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        $product->save();
+
+        return redirect('admin/products')->with('success', 'Success added product');
     }
 
     /**

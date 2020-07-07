@@ -11,56 +11,29 @@
                 <div>Products</div>
             </div>
             <div class="page-title-actions">
-                <button type="button" data-toggle="tooltip" title="Delete" data-placement="bottom" class="btn-shadow mr-3 btn btn-sm btn-danger">
+                <button type="button" data-toggle="tooltip" title="Delete" data-placement="bottom" class="btn-shadow mr-3 btn btn-danger" id="bulkDelete">
                 <i class="fa fa-trash"></i>
                 </button>
-                <div class="d-inline-block dropdown">
-                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-                    <span class="btn-icon-wrapper pr-2 opacity-7">
-                        <i class="fa fa-business-time fa-w-20"></i>
-                    </span>
-                    Buttons
-                    </button>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" class="nav-link">
-                                    <i class="nav-link-icon lnr-inbox"></i>
-                                    <span>
-                                        Inbox
-                                    </span>
-                                    <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" class="nav-link">
-                                    <i class="nav-link-icon lnr-book"></i>
-                                    <span>
-                                        Book
-                                    </span>
-                                    <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" class="nav-link">
-                                    <i class="nav-link-icon lnr-picture"></i>
-                                    <span>
-                                        Picture
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a disabled href="javascript:void(0);" class="nav-link disabled">
-                                    <i class="nav-link-icon lnr-file-empty"></i>
-                                    <span>
-                                        File Disabled
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="d-inline-block">
+                    <a href="{{ url('admin/products/add') }}" class="btn btn-info font-weight-bold btn-shadow" data-toggle="tooltip" title="Add Product" data-placement="bottom"><i class="fa fa-plus"></i> Add</a>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                  {{ session()->get('success') }}
+                </div>
+            @endif
+            @if(session()->has('error'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                  {{ session()->get('error') }}
+                </div>
+            @endif
         </div>
     </div>
     <div class="row">
@@ -70,8 +43,8 @@
                     <table class="mb-0 table table-bordered table-hover table-striped">
                         <thead>
                             <tr>
-                                <th width="10"><input type="checkbox"></th>
-                                <th>Image</th>
+                                <th width="10"><input type="checkbox" class="checkbox-th"></th>
+                                <th class="text-center">Image</th>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Stock</th>
@@ -79,18 +52,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                               <td><input type="checkbox"></td>
-                               <td>Image</td>
-                               <td>Sweater</td>
-                               <td>100</td>
-                               <td>100</td>
-                               <td class="text-center">
-                                   <a href="" class="btn btn-primary btn-sm" title="Edit"><i class="pe-7s-note font-weight-bold"></i></a>
-                               </td>
-                           </tr>
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td><input type="checkbox" class="checkbox-td" value="{{ $product->id }}"></td>
+                                    <td class="text-center"><img src="{{ $product->path_image }}" width="50"></td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-primary btn-sm" title="Edit"><i class="pe-7s-note font-weight-bold"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="card-footer">
+                    {{ $products->links() }}
                 </div>
             </div>
         </div>
@@ -102,4 +80,45 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/Javascript">
+    $('.checkbox-th').click(function(){
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+
+    $('#bulkDelete').click(function(){
+        let id = [];
+        $('.checkbox-td:checked').each(function(){
+            id.push($(this).val())
+        });
+        if(id.length > 0) {
+            swal({
+              title: "Are you sure?",
+              text: "Are you sure want to delete this data ?",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                $.ajax({
+                    url: '/admin/products/delete',
+                    data: {id: id},
+                    success: function(response){
+                        swal("Success", response, "success")
+                        .then(function(){
+                            location.reload();
+                        });
+                    }
+                });
+              }
+            })
+        } else {
+            swal("Info", "Please select atleast one checkbox", "info")
+        }
+    });
+</script>
 @endsection

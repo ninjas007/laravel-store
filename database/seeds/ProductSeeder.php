@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->insert([
         	'name' => 'Sweatshirt',
-        	'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
+        	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
         	'price' => 139,
         	'stock' => 100,
         	'category_id' => 3
@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
         	'name' => 'Grey blouse',
-        	'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
+        	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
         	'price' => 99,
         	'stock' => 100,
         	'category_id' => 3
@@ -30,7 +30,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
         	'name' => 'Denim Shirt',
-        	'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
+        	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
         	'price' => 139,
         	'stock' => 100,
         	'category_id' => 2
@@ -38,7 +38,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
         	'name' => 'Black Jacket',
-        	'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
+        	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
         	'price' => 139,
         	'stock' => 100,
         	'category_id' => 4
@@ -46,7 +46,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Denim Shirt',
-            'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
+            'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
             'price' => 139,
             'stock' => 100,
             'category_id' => 2
@@ -54,7 +54,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Black Jacket',
-            'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
+            'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
             'price' => 139,
             'stock' => 100,
             'category_id' => 4
@@ -62,7 +62,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Sweatshirt',
-            'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
+            'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
             'price' => 139,
             'stock' => 100,
             'category_id' => 3
@@ -70,7 +70,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Grey blouse',
-            'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
+            'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
             'price' => 99,
             'stock' => 100,
             'category_id' => 3
@@ -78,7 +78,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Denim Shirt',
-            'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
+            'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
             'price' => 139,
             'stock' => 100,
             'category_id' => 2
@@ -86,7 +86,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Black Jacket',
-            'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
+            'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
             'price' => 139,
             'stock' => 100,
             'category_id' => 4
@@ -94,7 +94,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Sweatshirt',
-            'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
+            'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
             'price' => 139,
             'stock' => 100,
             'category_id' => 3
@@ -102,7 +102,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Grey blouse',
-            'image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
+            'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
             'price' => 99,
             'stock' => 100,
             'category_id' => 3

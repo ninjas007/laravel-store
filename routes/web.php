@@ -25,7 +25,7 @@ Route::prefix('admin')->group(function () {
 	Route::prefix('products')->group(function() {
 		Route::get('/', 'Admin\ProductController@index');
 		Route::get('add', 'Admin\ProductController@create');
-		Route::post('store', 'Admin\ProductController@store')->name('admin.categories-store');
+		Route::post('store', 'Admin\ProductController@store')->name('admin.products-store');
 		Route::get('edit/{id}', 'Admin\ProductController@edit');
 		Route::put('update/{id}', 'Admin\ProductController@update');
 	});
@@ -37,5 +37,9 @@ Route::prefix('admin')->group(function () {
 		Route::get('edit/{id}', 'Admin\ProductCategoryController@edit');
 		Route::put('update/{id}', 'Admin\ProductCategoryController@update');
 		Route::get('delete', 'Admin\ProductCategoryController@destroy');
+	});
+	// Route file manager
+	Route::group(['prefix' => 'laravel-filemanager'], function () {
+	    \UniSharp\LaravelFilemanager\Lfm::routes();
 	});
 });
