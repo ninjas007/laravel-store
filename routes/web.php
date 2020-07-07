@@ -28,6 +28,7 @@ Route::prefix('admin')->group(function () {
 		Route::post('store', 'Admin\ProductController@store')->name('admin.products-store');
 		Route::get('edit/{id}', 'Admin\ProductController@edit');
 		Route::put('update/{id}', 'Admin\ProductController@update');
+		Route::get('delete', 'Admin\ProductController@destroy');
 	});
 	// Route categories
 	Route::prefix('categories')->group(function() {

@@ -27,7 +27,7 @@
                         
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Category name" value="{{ old('name') }}" onkeyup="clearError()">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Category name" value="{{ old('name') }}">
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">

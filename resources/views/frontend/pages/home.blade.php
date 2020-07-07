@@ -60,7 +60,7 @@
 
             <!--Card image-->
             <div class="view overlay">
-              <img src="{{ $product->image }}" class="card-img-top"
+              <img src="{{ $product->path_image }}" class="card-img-top"
                 alt="">
               <a>
                 <div class="mask rgba-white-slight"></div>
@@ -76,9 +76,7 @@
               </a>
               <h5>
                 <strong>
-                  <a href="" class="dark-grey-text">{{ $product->name }}
-                    <span class="badge badge-pill danger-color">NEW</span>
-                  </a>
+                  <a href="" class="dark-grey-text">{{ $product->name }}</a>
                 </strong>
               </h5>
 
@@ -104,42 +102,7 @@
 
   <!--Pagination-->
   <nav class="d-flex justify-content-center wow fadeIn">
-    {{ $products->links() }}
-    {{-- <ul class="pagination pg-blue">
-
-      <!--Arrow left-->
-      <li class="page-item disabled">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-
-      <li class="page-item active">
-        <a class="page-link" href="#">1
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">2</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">3</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">4</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">5</a>
-      </li>
-
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul> --}}
+    {{ $products->links() }}\
   </nav>
   <!--Pagination-->
 

@@ -43,7 +43,7 @@ class ProductCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:20|unique:product_categories',
             'sort_list' => 'required|integer|max:8',
-            'slug' => 'string|max:30'
+            'slug' => 'max:30'
         ]);
 
         $category = ProductCategory::create([
@@ -95,7 +95,7 @@ class ProductCategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:20',
             'sort_list' => 'required|integer|max:8',
-            'slug' => 'string|max:30'
+            'slug' => 'max:30'
         ]);
 
         // check already category name other row

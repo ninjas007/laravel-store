@@ -52,6 +52,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (count($products) <= 0)
+                                <tr>
+                                    <td colspan="6" class="text-center">No result</td>
+                                </tr>
+                            @endif
                             @foreach ($products as $product)
                                 <tr>
                                     <td><input type="checkbox" class="checkbox-td" value="{{ $product->id }}"></td>
@@ -60,7 +65,7 @@
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-primary btn-sm" title="Edit"><i class="pe-7s-note font-weight-bold"></i></a>
+                                        <a href="{{ url('admin/products/edit/'. $product->id) }}" class="btn btn-primary btn-sm" title="Edit"><i class="pe-7s-note font-weight-bold"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

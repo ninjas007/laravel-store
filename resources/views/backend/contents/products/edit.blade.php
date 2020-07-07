@@ -22,13 +22,14 @@
         <div class="col-lg-9">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title"><i class="metismenu-icon pe-7s-menu"></i> Product Add</h5>
-                    <form method="POST" action="{{ route('admin.products-store') }}">
+                    <h5 class="card-title"><i class="metismenu-icon pe-7s-menu"></i> Product Edit</h5>
+                    <form method="POST" action="{{ url('admin/products/update', [$product->id]) }}">
+                        @method('PUT')
                         @csrf
                         
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Product name" value="{{ old('name') }}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Product name" value="{{ $product->name }}">
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -38,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="Product price" value="{{ old('price') }}">
+                            <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="Product price" value="{{ $product->price }}">
 
                             @error('price')
                                 <span class="invalid-feedback" role="alert">
@@ -48,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             <label for="stock">Stock</label>
-                            <input type="text" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" placeholder="Product stock" value="{{ old('stock') }}">
+                            <input type="text" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" placeholder="Product stock" value="{{ $product->stock }}">
 
                             @error('stock')
                                 <span class="invalid-feedback" role="alert">
@@ -58,17 +59,14 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Category</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <a href="{{ url('admin/categories/add') }}" class="btn btn-secondary" title="Add Category"><i class="fa fa-plus"></i></a>
-                                </div>
-                                <select name="category" id="category" class="form-control">
-                                        <option value="" selected disabled>-- Select Category --</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <select name="category" id="category" class="form-control">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" 
+                                        {{ ($product->category_id == $category->id) ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="thumbnail">Image</label>
@@ -76,9 +74,9 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" id="lfm" data-input="thumbnail" data-preview="holder"><i class="pe-7s-photo"></i> Choose</button>
                                 </div>
-                                <input id="thumbnail" class="form-control @error('path_image') is-invalid @enderror" type="text" name="path_image" placeholder="Choose your file / url image" value="{{ old('path_image') }}">
+                                <input id="thumbnail" class="form-control @error('path_image') is-invalid @enderror" type="text" name="path_image" placeholder="Choose your file / url image" value="{{ $product->path_image }}">
                             </div>
-                            <img id="holder" style="margin-top:15px;max-height:100px;">
+                            <img src="{{ $product->path_image }}" id="holder" style="margin-top:15px;max-height:100px;">
 
                             @error('path_image')
                                 <span class="invalid-feedback" role="alert">

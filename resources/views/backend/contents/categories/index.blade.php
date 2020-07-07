@@ -50,6 +50,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (count($categories) <= 0)
+                                <tr>
+                                    <td colspan="6" class="text-center">No result</td>
+                                </tr>
+                            @endif
                             @foreach ($categories as $category)
                                 <tr>
                                     <td><input type="checkbox" class="checkbox-td" value="{{ $category->id }}"></td>
