@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'Client\PagesController@home')->name('home');
-Route::get('product/{slug}', 'Client\PagesController@product')->name('product');
 Route::get('/', 'Client\PagesController@home');
+Route::get('home', 'Client\PagesController@home')->name('home');
+Route::get('category/{slug}', 'Client\PagesController@category');
+Route::get('product/{slug}', 'Client\PagesController@product')->name('product');
 
 Route::prefix('admin')->group(function () {
 	

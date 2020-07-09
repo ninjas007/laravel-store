@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         	'name' => 'Sweatshirt',
             'slug' => 'sweatshirt',
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
-        	'price' => 139,
+        	'price' => 139000,
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
         	'stock' => 100
         ]);
@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
             'slug' => 'grey-blouse',
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
-        	'price' => 99,
+        	'price' => 99000,
         	'stock' => 100
         ]);
 
@@ -35,7 +35,7 @@ class ProductSeeder extends Seeder
             'slug' => 'denim-shirt',
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
-        	'price' => 139,
+        	'price' => 139000,
         	'stock' => 100
         ]);
 
@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
             'slug' => 'black-jacket',
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
-        	'price' => 139,
+        	'price' => 139000,
         	'stock' => 100
         ]);
     }

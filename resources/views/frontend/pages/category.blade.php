@@ -54,9 +54,9 @@
         <div class="collapse navbar-collapse" id="basicExampleNav">
             <ul class="navbar-nav mr-auto">
                 
-                @foreach ($categories as $category)
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('category/'.$category->slug) }}">{{ $category->name }}
+                @foreach ($categories as $cat)
+                <li class="nav-item {{ ($cat->id == $category->id) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('category/'.$cat->slug) }}">{{ $cat->name }}
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -71,7 +71,7 @@
         </div>
     </nav>
     <section class="text-center mb-4">
-        <div class="row wow fadeIn" id="products">
+        <div class="row wow fadeIn">
             
             @foreach ($products as $product)
             <div class="col-lg-3 col-sm-6 mb-4">

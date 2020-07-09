@@ -74,6 +74,7 @@
     new WOW().init();
 
   </script>
+  @yield('scripts')
 </body>
 
 </html>

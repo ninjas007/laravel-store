@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\ProductCategory;
-use App\Models\ProductToCategory;
+use App\Models\Category;
 use App\Models\Banner;
 use App\Models\Product;
 
@@ -15,20 +14,9 @@ class PagesController extends Controller
     public function home()
     {
     	$data['title'] = 'Home';
-    	$data['categories'] = ProductCategory::all();
+    	$data['categories'] = Category::all();
     	$data['banners'] = Banner::all();
-    	// $data['products'] = Product::with('categories')->paginate(8);
-        // $data['product'] = ProductToCategory::with('products')->with('categories')->get()->toArray();
-        // $data['product'] = ProductToCategory::groupBy('product_id')->with('categories')->get()->toArray();
-        $product = Product::find(1);
-        $categories = $product->categories;
-
-        foreach ($categories as $category) {
-            echo $category;
-        // dd($data['product']);
-        }
-        die();
-
+        $data['products'] = Product::with('categories')->paginate(4);
 
     	return view('frontend.pages.home', $data);
     }
@@ -36,14 +24,19 @@ class PagesController extends Controller
     public function product($slug)
     {
     	$data['title'] = 'Product';
-    	$data['product'] = ProductToCategory::where('slug', $slug)->with('products')->first();
-
-        dd($data['product']);
-
-    	if (is_null($data['product'])) {
-    		return view('frontend.pages.not_found', $data);
-    	}
+    	$data['product'] = Product::where('slug', $slug)->with('categories')->first();
 
     	return view('frontend.pages.product', $data);
+    }
+
+    public function category($slug)
+    {
+        $data['title'] = 'Category';
+        $data['categories'] = Category::all();
+        $data['banners'] = Banner::all();        
+        $data['category'] = Category::where('slug', $slug)->first();
+        $data['products'] = Category::find($data['category']->id)->products()->paginate(4);
+
+        return view('frontend.pages.category', $data);
     }
 }

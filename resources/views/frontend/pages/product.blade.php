@@ -4,12 +4,12 @@
 <div class="container dark-grey-text mt-5">
 
   <!--Grid row-->
-  <div class="row wow fadeIn">
+  <div class="row wow fadeIn justify-content-center">
 
     <!--Grid column-->
-    <div class="col-md-6 mb-4">
+    <div class="col-md-5 mb-4">
 
-      <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+      <img src="{{ $product->path_image }}" class="img-fluid" alt="{{ $product->name }}">
 
     </div>
     <!--Grid column-->
@@ -21,9 +21,13 @@
       <div class="p-4">
 
         <div class="mb-3">
-          <a href="">
-            <span class="badge purple mr-1">{{ $product->categories['name'] }}</span>
-          </a>
+          @foreach ($product->categories as $category)
+            @if ($category->name != 'All')
+              <a href="{{ url('category/'. $category->slug ) }}">
+                <span class="badge purple mr-1">{{ $category->name }}</span>
+              </a>
+            @endif
+          @endforeach
         </div>
 
         <p class="lead">
