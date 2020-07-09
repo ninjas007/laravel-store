@@ -17,35 +17,35 @@ class ProductSeeder extends Seeder
             'slug' => 'sweatshirt',
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
         	'price' => 139,
-        	'stock' => 100,
-        	'category_id' => 3
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
+        	'stock' => 100
         ]);
 
         DB::table('products')->insert([
         	'name' => 'Grey blouse',
             'slug' => 'grey-blouse',
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
         	'price' => 99,
-        	'stock' => 100,
-        	'category_id' => 3
+        	'stock' => 100
         ]);
 
         DB::table('products')->insert([
         	'name' => 'Denim Shirt',
             'slug' => 'denim-shirt',
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
         	'price' => 139,
-        	'stock' => 100,
-        	'category_id' => 2
+        	'stock' => 100
         ]);
 
         DB::table('products')->insert([
         	'name' => 'Black Jacket',
             'slug' => 'black-jacket',
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
         	'price' => 139,
-        	'stock' => 100,
-        	'category_id' => 4
+        	'stock' => 100
         ]);
     }
 }

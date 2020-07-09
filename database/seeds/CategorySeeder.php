@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ProductCategorySeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,28 +13,28 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('product_categories')->insert([
+        DB::table('categories')->insert([
             'uuid' => (string) Str::uuid(),
         	'name' => 'All',
             'sort_list' => 0,
             'slug' => 'all'
         ]);
 
-        DB::table('product_categories')->insert([
+        DB::table('categories')->insert([
             'uuid' => (string) Str::uuid(),
         	'name' => 'Shirts',
             'sort_list' => 1,
             'slug' => 'shirts'
         ]);
 
-        DB::table('product_categories')->insert([
+        DB::table('categories')->insert([
             'uuid' => (string) Str::uuid(),
         	'name' => 'Sport wears',
             'sort_list' => 2,
             'slug' => 'sport-wears'
         ]);
 
-        DB::table('product_categories')->insert([
+        DB::table('categories')->insert([
             'uuid' => (string) Str::uuid(),
         	'name' => 'Outwears',
             'sort_list' => 3,

@@ -49,10 +49,10 @@
 
   @include('frontend.includes.navbar')
 
-  @include('frontend.includes.banner')
+  @yield('banner')
 
   <!--Main layout-->
-  <main>
+  <main class="mt-5 pt-4">
     @yield('content')
   </main>
   <!--Main layout-->

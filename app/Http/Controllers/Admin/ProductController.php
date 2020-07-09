@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use App\Product;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -29,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data['categories'] = \App\ProductCategory::all();
+        $data['categories'] = \App\Models\ProductCategory::all();
 
         return view('backend.contents.products.add', $data);
     }
@@ -50,20 +51,38 @@ class ProductController extends Controller
             'path_image' => 'string|max:255'
         ]);
 
-        $product = Product::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
-            'price' => $request->price,
-            'stock' => $request->stock,
-            'category_id' => $request->category,
-            'path_image' => $request->path_image,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
+        try {    
+            DB::beginTransaction();
 
-        $product->save();
+            $product = Product::create([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name, '-'),
+                'price' => $request->price,
+                'description' => $request->description,
+                'stock' => $request->stock,
+                'category_id' => $request->category,
+                'path_image' => $request->path_image,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
 
-        return redirect('admin/products')->with('success', 'Success added product');
+            $product->save();
+
+            foreach ($request->category as $category) {
+                $productToCategory = ProductToCategory::create([
+                    'product_id' => $product->id,
+                    'category_id' => $category,
+                ]);   
+            }
+
+            DB::commit();
+
+            return redirect('admin/products')->with('success', 'Success added product');
+
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            DB::rollBack();
+        }
     }
 
     /**
@@ -86,7 +105,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $data['product'] = Product::find($id)->first();
-        $data['categories'] = \App\ProductCategory::all();
+        $data['categories'] = \App\Models\ProductToCategory::where('product_id', $id)->with('categories');
 
         return view('backend.contents.products.edit', $data);
     }
@@ -117,6 +136,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->slug = Str::slug($request->name, '-');
         $product->price = $request->price;
+        $product->description = $request->description;
         $product->stock = $request->stock;
         $product->category_id = $request->category;
         $product->path_image = $request->path_image;
