@@ -59,7 +59,7 @@
                                         <td class="text-right">${response.subtotal}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5" align="right"><button type="submit" class="btn btn-primary btn-sm font-weight-bold">Checkout</button></td>
+                                        <td colspan="5" align="right"><a href="/checkout" class="btn btn-primary btn-sm font-weight-bold">Checkout</a></td>
                                     </tr>
                                 </tbody>
                             </table>

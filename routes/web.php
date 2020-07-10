@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'Client\Pages\HomeController@index');
-Route::get('/home', 'Client\Pages\HomeController@index');
-Route::get('category/{slug}', 'Client\Pages\CategoryController@index');
-Route::get('product/{slug}', 'Client\Pages\ProductController@index');
-Route::get('cart', 'Client\Pages\CartController@index');
+Route::get('/', 'Client\HomeController@index');
+Route::get('/home', 'Client\HomeController@index');
+Route::get('category/{slug}', 'Client\CategoryController@index');
+Route::get('product/{slug}', 'Client\ProductController@index');
+Route::get('cart', 'Client\CartController@index');
 Route::get('checkout', 'Client\CheckoutController@checkout');
 
 Route::prefix('api')->group(function() {
