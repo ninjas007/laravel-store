@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Client\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,10 +18,11 @@ class CartController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Cart';
-        $data['carts'] = Cart::content();
+    	$data['carts'] = Cart::content();
+    	$data['subtotal'] = Cart::subtotal();
+    	$data['count'] = Cart::count();
 
-        return view('frontend.pages.cart', $data);
+        return response()->json($data);
     }
 
     /**

@@ -15,18 +15,21 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'Client\PagesController@home');
-Route::get('home', 'Client\PagesController@home')->name('home');
-Route::get('category/{slug}', 'Client\PagesController@category');
-Route::get('product/{slug}', 'Client\PagesController@product')->name('product');
-Route::get('cart', 'Client\CartController@index');
-Route::post('cart/store', 'Client\CartController@store');
-Route::post('cart/update', 'Client\CartController@update');
-Route::get('cart/remove', 'Client\CartController@destroy');
+Route::get('/', 'Client\Pages\HomeController@index');
+Route::get('/home', 'Client\Pages\HomeController@index');
+Route::get('category/{slug}', 'Client\Pages\CategoryController@index');
+Route::get('product/{slug}', 'Client\Pages\ProductController@index');
+Route::get('cart', 'Client\Pages\CartController@index');
 Route::get('checkout', 'Client\CheckoutController@checkout');
 
-Route::prefix('admin')->group(function () {
-	
+Route::prefix('api')->group(function() {
+	Route::get('cart', 'Client\Api\CartController@index');
+	Route::post('cart/store', 'Client\Api\CartController@store');
+	Route::post('cart/update', 'Client\Api\CartController@update');
+	Route::get('cart/remove', 'Client\Api\CartController@destroy');
+});
+
+Route::prefix('admin')->group(function() {	
 	Route::get('dashboard', 'Admin\DashboardController@index');
 	// Route products
 	Route::prefix('products')->group(function() {

@@ -1,16 +1,6 @@
 @extends('frontend.template')
 @section('content')
 <div class="container dark-grey-text mt-5">
-    <div class="row">
-        <div class="col-md-12">
-            @if(session()->has('success'))
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                  {{ session()->get('success') }}
-                </div>
-            @endif
-        </div>
-    </div>
     <div class="row wow fadeIn justify-content-center">
         <div class="col-md-5 mb-4">
             <img src="{{ $product->path_image }}" class="img-fluid" alt="{{ $product->name }}">
@@ -74,7 +64,7 @@
         qty = $('#qty').val();
 
         $.ajax({
-            url: '/cart/store',
+            url: '/api/cart/store',
             dataType: 'json',
             type: 'POST',
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -83,6 +73,7 @@
                 swal('Success', response.message, 'success')
                 .then(()=>{
                     $('#count').html(response.count)
+                    $('#qty').val('1')
                 })
             },
             error: function(error) {
