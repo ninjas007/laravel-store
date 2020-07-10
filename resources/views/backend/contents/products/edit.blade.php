@@ -45,7 +45,7 @@
                             <label for="category">Category</label>
                             <select name="category[]" id="category" class="form-control" multiple="multiple">
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ ($category->id == $product->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -102,8 +102,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script type="text/Javascript">
-$('#lfm').filemanager('image');
-CKEDITOR.replace('description');
+
+$(document).ready(function() {
+    $('#category').select2();
+    $('#lfm').filemanager('image');
+    CKEDITOR.replace('description');
+});
 </script>
 @endsection

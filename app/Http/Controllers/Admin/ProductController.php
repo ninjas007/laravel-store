@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data['categories'] = \App\Models\ProductCategory::all();
+        $data['categories'] = \App\Models\Category::all();
 
         return view('backend.contents.products.add', $data);
     }

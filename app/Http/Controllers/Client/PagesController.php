@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Banner;
 use App\Models\Product;
+use Cart;
 
 class PagesController extends Controller
 {

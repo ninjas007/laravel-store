@@ -19,6 +19,11 @@ Route::get('/', 'Client\PagesController@home');
 Route::get('home', 'Client\PagesController@home')->name('home');
 Route::get('category/{slug}', 'Client\PagesController@category');
 Route::get('product/{slug}', 'Client\PagesController@product')->name('product');
+Route::get('cart', 'Client\CartController@index');
+Route::post('cart/store', 'Client\CartController@store');
+Route::post('cart/update', 'Client\CartController@update');
+Route::get('cart/remove', 'Client\CartController@destroy');
+Route::get('checkout', 'Client\CheckoutController@checkout');
 
 Route::prefix('admin')->group(function () {
 	
