@@ -59,20 +59,20 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'slug' => Str::slug($request->name, '-'),
                 'price' => $request->price,
+                'weight' => $request->weight,
+                'tax' => $request->tax,
                 'description' => $request->description,
                 'stock' => $request->stock,
-                'path_image' => $request->path_image,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'path_image' => $request->path_image
             ]);
 
             $product->save();
 
             foreach ($request->category as $category) {
-                $categoryProduct = \App\Models\CategoryProduct::create([
+                DB::table('category_product')->insert([
                     'product_id' => $product->id,
-                    'category_id' => $category,
-                ]);   
+                    'category_id' => $category
+                ]);
             }
 
             DB::commit();
@@ -83,7 +83,7 @@ class ProductController extends Controller
             logger($e->getMessage());
             DB::rollBack();
 
-            return redirect('admin/products')->with('error', $e->getMessage());
+            return redirect('admin/products')->with('error', 'Error server, failed added product');
         }
     }
 
@@ -130,7 +130,6 @@ class ProductController extends Controller
             'name' => 'required|string|max:100',
             'price' => 'required|integer',
             'stock' => 'required|integer',
-            'category' => 'required|integer',
         ]);
 
         // check already product name other row
@@ -140,18 +139,39 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
-        $product->name = $request->name;
-        $product->slug = Str::slug($request->name, '-');
-        $product->price = $request->price;
-        $product->description = $request->description;
-        $product->stock = $request->stock;
-        $product->category_id = $request->category;
-        $product->path_image = $request->path_image;
-        $product->updated_at = date('Y-m-d H:i:s');
+        try {
+            DB::beginTransaction();
 
-        $product->save();
+            $product->name = $request->name;
+            $product->slug = Str::slug($request->name, '-');
+            $product->price = $request->price;
+            $product->description = $request->description;
+            $product->stock = $request->stock;
+            $product->weight = $request->weight;
+            $product->tax = $request->tax;
+            $product->path_image = $request->path_image;
+            $product->updated_at = date('Y-m-d H:i:s');
 
-        return redirect('admin/products')->with('success', 'Success updated product');
+            $product->save();
+            $productCategory = DB::table('category_product')->where('product_id', $id)->delete();
+
+            foreach ($request->category as $category) {
+                DB::table('category_product')->insert([
+                    'product_id' => $product->id,
+                    'category_id' => $category
+                ]);
+            }
+
+            DB::commit();
+            
+            return redirect('admin/products')->with('success', 'Success updated product');
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            DB::rollBack();
+
+            return redirect('admin/products')->with('error', 'Error server, failed added product');
+        }
+
     }
 
     /**
@@ -162,10 +182,20 @@ class ProductController extends Controller
     public function destroy(Request $request)
     {
         $productIdArray = $request->input('id');
-        $product = Product::whereIn('id', $productIdArray);
+        try {
+            DB::beginTransaction();
+            
+            Product::whereIn('id', $productIdArray)->delete();
+            DB::table('category_product')->whereIn('product_id', $productIdArray)->delete();
+
+            DB::commit();
+            
+            return response()->json('Success deleted products', 200);
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            DB::rollBack();
+            return response()->json('Failed deleted products', 400);
+        }
         
-        $product->delete();
-        
-        return response()->json('Success deleted products', 200);
     }
 }

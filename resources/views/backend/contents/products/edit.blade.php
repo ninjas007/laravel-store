@@ -5,6 +5,7 @@
 @endsection
 @section('content')
 <form method="POST" action="{{ url('admin/products/update', [$product->id]) }}">
+    @method('PUT')
     @csrf
     <div class="app-main__inner">
         <div class="app-page-title">
@@ -81,7 +82,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="Product price" value="{{ old('price') }}">
+                            <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="price" value="{{ $product->price }}">
 
                             @error('price')
                             <span class="invalid-feedback" role="alert">
@@ -91,9 +92,29 @@
                         </div>
                         <div class="form-group">
                             <label for="stock">Stock</label>
-                            <input type="text" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" placeholder="Product stock" value="{{ old('stock') }}">
+                            <input type="text" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" placeholder="stock" value="{{ $product->stock }}">
 
                             @error('stock')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (gram)</label>
+                            <input type="text" class="form-control @error('weight') is-invalid @enderror" name="weight" id="weight" placeholder="weight" value="{{ $product->weight }}">
+
+                            @error('weight')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="tax">Tax</label>
+                            <input type="text" class="form-control @error('tax') is-invalid @enderror" name="tax" id="tax" placeholder="tax" value="{{ $product->tax }}">
+
+                            @error('tax')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

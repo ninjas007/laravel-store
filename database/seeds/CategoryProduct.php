@@ -15,58 +15,42 @@ class CategoryProduct extends Seeder
     {
         DB::table('category_product')->insert([
         	'product_id' => 1,
-        	'category_id' => 1,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+        	'category_id' => 1
         ]);
 
         DB::table('category_product')->insert([
         	'product_id' => 1,
-        	'category_id' => 2,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+        	'category_id' => 2
         ]);
 
         DB::table('category_product')->insert([
         	'product_id' => 2,
-        	'category_id' => 1,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+        	'category_id' => 1
         ]);
 
         DB::table('category_product')->insert([
         	'product_id' => 2,
-        	'category_id' => 3,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+        	'category_id' => 3
         ]);
 
         DB::table('category_product')->insert([
         	'product_id' => 3,
-        	'category_id' => 1,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+        	'category_id' => 1
         ]);
 
         DB::table('category_product')->insert([
         	'product_id' => 3,
-        	'category_id' => 4,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+        	'category_id' => 4
         ]);
 
         DB::table('category_product')->insert([
         	'product_id' => 4,
-        	'category_id' => 1,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+        	'category_id' => 1
         ]);
 
         DB::table('category_product')->insert([
         	'product_id' => 4,
-        	'category_id' => 4,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+        	'category_id' => 4
         ]);
     }
 }

@@ -76,7 +76,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="Product price" value="{{ old('price') }}">
+                            <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="price" value="{{ old('price') }}">
 
                             @error('price')
                             <span class="invalid-feedback" role="alert">
@@ -86,9 +86,29 @@
                         </div>
                         <div class="form-group">
                             <label for="stock">Stock</label>
-                            <input type="text" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" placeholder="Product stock" value="{{ old('stock') }}">
+                            <input type="text" class="form-control @error('stock') is-invalid @enderror" name="stock" id="stock" placeholder="stock" value="{{ old('stock') }}">
 
                             @error('stock')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (gram)</label>
+                            <input type="text" class="form-control @error('weight') is-invalid @enderror" name="weight" id="weight" placeholder="weight" value="{{ old('weight') }}">
+
+                            @error('weight')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="tax">Tax</label>
+                            <input type="text" class="form-control @error('tax') is-invalid @enderror" name="tax" id="tax" placeholder="tax" value="{{ old('tax') }}">
+
+                            @error('tax')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -107,7 +127,6 @@
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script type="text/Javascript">
-
 $(document).ready(function() {
     $('#category').select2();
     $('#lfm').filemanager('image');

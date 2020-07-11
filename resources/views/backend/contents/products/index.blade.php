@@ -117,6 +117,12 @@
                         .then(function(){
                             location.reload();
                         });
+                    },
+                    error: function(error){
+                        swal("Error", error.responseJSON, "error")
+                        .then(function(){
+                            location.reload();
+                        });
                     }
                 });
               }
