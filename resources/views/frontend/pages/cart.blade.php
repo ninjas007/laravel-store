@@ -129,6 +129,27 @@
                 .then(()=>{
                     getCart()
                 })
+            },
+            error: function(error) {
+                data = error.responseJSON;
+                m = data.message;
+                if(Array.isArray(data.message)){
+                    m = ``;
+                    span = document.createElement("span");
+                    $.each(data.message, function(key, item){
+                        $.each(item, function(i, val){
+                            m += val;
+                        })
+                    })
+                    span.innerHTML = m
+                    swal({title: 'Error', content: span, icon: 'error'}).then(()=>{
+                        $('#count').html(data.count)
+                    })
+                } else {
+                    swal('Error', m, 'error').then(()=>{
+                        $('#count').html(data.count)
+                    })
+                }
             }
         })
     }

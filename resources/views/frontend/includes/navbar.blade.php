@@ -17,16 +17,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons ml-auto">
-        <li class="nav-item">
+        <li class="nav-item {{ (Request::segment(1) == 'product') ? 'active' : ''}}">
           <a class="nav-link waves-effect" href="#">Products</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ (Request::segment(1) == 'contact') ? 'active' : ''}}">
           <a class="nav-link waves-effect" href="#">Contact</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ (Request::segment(1) == 'account') ? 'active' : ''}}">
           <a class="nav-link waves-effect" href="#">Account</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ (Request::segment(1) == 'checkout') ? 'active' : ''}}">
+          <a class="nav-link waves-effect" href="{{ url('checkout') }}">Checkout</a>
+        </li>
+        <li class="nav-item {{ (Request::segment(1) == 'cart') ? 'active' : ''}}">
           <a href="{{ url('cart') }}" class="nav-link waves-effect">
             <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             <i class="fas fa-shopping-cart"></i>

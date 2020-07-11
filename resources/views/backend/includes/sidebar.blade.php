@@ -49,27 +49,6 @@
                     Products
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class="metismenu-icon pe-7s-car"></i>
-                    Components
-                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="components-tabs.html">
-                            <i class="metismenu-icon">
-                            </i>Tabs
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-accordions.html">
-                            <i class="metismenu-icon">
-                            </i>Accordions
-                        </a>
-                    </li>
-                </ul>
-            </li>
             <li class="app-sidebar__heading">Widgets</li>
             <li>
                 <a href="dashboard-boxes.html">

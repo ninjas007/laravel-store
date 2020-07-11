@@ -1,5 +1,8 @@
 @extends('backend.template')
 
+@section('styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+@endsection
 @section('content')
 <form method="POST" action="{{ url('admin/products/update', [$product->id]) }}">
     @csrf
@@ -45,7 +48,12 @@
                             <label for="category">Category</label>
                             <select name="category[]" id="category" class="form-control" multiple="multiple">
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}"
+                                    @foreach ($product->categories as $cat)
+                                        {{ ($cat['id'] == $category->id) ? 'selected' : '' }}
+                                    @endforeach>
+                                    {{ $category->name }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>

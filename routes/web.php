@@ -17,10 +17,10 @@ Auth::routes();
 
 Route::get('/', 'Client\HomeController@index');
 Route::get('/home', 'Client\HomeController@index');
-Route::get('category/{slug}', 'Client\CategoryController@index');
-Route::get('product/{slug}', 'Client\ProductController@index');
-Route::get('cart', 'Client\CartController@index');
-Route::get('checkout', 'Client\CheckoutController@checkout');
+Route::get('/category/{slug}', 'Client\CategoryController@index');
+Route::get('/product/{slug}', 'Client\ProductController@index');
+Route::get('/cart', 'Client\CartController@index');
+Route::get('/checkout', 'Client\CheckoutController@index');
 
 Route::prefix('api')->group(function() {
 	Route::get('cart', 'Client\Api\CartController@index');
@@ -42,12 +42,12 @@ Route::prefix('admin')->group(function() {
 	});
 	// Route categories
 	Route::prefix('categories')->group(function() {
-		Route::get('/', 'Admin\ProductCategoryController@index');
-		Route::get('add', 'Admin\ProductCategoryController@create');
-		Route::post('store', 'Admin\ProductCategoryController@store')->name('admin.categories-store');
-		Route::get('edit/{id}', 'Admin\ProductCategoryController@edit');
-		Route::put('update/{id}', 'Admin\ProductCategoryController@update');
-		Route::get('delete', 'Admin\ProductCategoryController@destroy');
+		Route::get('/', 'Admin\CategoryController@index');
+		Route::get('add', 'Admin\CategoryController@create');
+		Route::post('store', 'Admin\CategoryController@store')->name('admin.categories-store');
+		Route::get('edit/{id}', 'Admin\CategoryController@edit');
+		Route::put('update/{id}', 'Admin\CategoryController@update');
+		Route::get('delete', 'Admin\CategoryController@destroy');
 	});
 	// Route file manager
 	Route::group(['prefix' => 'laravel-filemanager'], function () {

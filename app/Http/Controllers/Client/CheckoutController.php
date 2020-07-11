@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class CheckoutController extends Controller
 {
     public function index()
     {
-    	$data['title'] = 'Cart';
+    	$data['title'] = 'Checkout';
 
-    	return view('frontend.pages.cart', $data);
+    	return view('frontend.pages.checkout', $data);
     }
 }

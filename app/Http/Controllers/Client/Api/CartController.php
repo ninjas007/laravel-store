@@ -35,13 +35,13 @@ class CartController extends Controller
     {
         $rules = [
             'product_id' => 'required|exists:products,id',
-            'qty' => 'required|integer'
+            'qty' => 'required|integer|min:0'
         ];
 
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            $data['message'] = 'Failed added item to cart';
+            $data['message'][] = $validator->messages();
             $data['count'] = Cart::count();
             return response()->json($data, 400);
         }
@@ -73,6 +73,19 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
+        $rules = [
+            'rowid' => 'required',
+            'qty' => 'required|integer|min:0'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            $data['message'][] = $validator->messages();
+            $data['count'] = Cart::count();
+            return response()->json($data, 400);
+        }
+
         Cart::update($request->rowid, $request->qty);
 
         $data['message'] = 'Success updated item cart';

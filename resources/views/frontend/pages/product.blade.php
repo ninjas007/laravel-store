@@ -70,18 +70,31 @@
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {product_id: product_id, qty: qty,  },
             success: function(response) {
-                swal('Success', response.message, 'success')
-                .then(()=>{
+                swal('Success', response.message, 'success').then(()=>{
                     $('#count').html(response.count)
                     $('#qty').val('1')
                 })
             },
             error: function(error) {
                 data = error.responseJSON;
-                swal('Error', data.message, 'error')
-                .then(()=>{
-                    $('#count').html(data.count)
-                })
+                m = data.message;
+                if(Array.isArray(data.message)){
+                    m = ``;
+                    span = document.createElement("span");
+                    $.each(data.message, function(key, item){
+                        $.each(item, function(i, val){
+                            m += val;
+                        })
+                    })
+                    span.innerHTML = m
+                    swal({title: 'Error', content: span, icon: 'error'}).then(()=>{
+                        $('#count').html(data.count)
+                    })
+                } else {
+                    swal('Error', m, 'error').then(()=>{
+                        $('#count').html(data.count)
+                    })
+                }
             }
         })
     });

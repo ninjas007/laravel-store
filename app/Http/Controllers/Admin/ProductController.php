@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -30,7 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data['categories'] = \App\Models\Category::all();
+        $data['categories'] = Category::all();
 
         return view('backend.contents.products.add', $data);
     }
@@ -104,8 +106,13 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $data['product'] = Product::find($id)->first();
-        $data['categories'] = \App\Models\ProductToCategory::where('product_id', $id)->with('categories');
+        $data['product'] = Product::where('id', $id)->with('categories')->first();
+        $data['categories'] = Category::all();
+
+        if (is_null($data['product'])) {
+            echo 'No data';
+            die;    
+        }
 
         return view('backend.contents.products.edit', $data);
     }
