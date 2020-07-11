@@ -49,7 +49,6 @@ class ProductController extends Controller
             'name' => 'required|string|max:100|unique:products',
             'price' => 'required|integer',
             'stock' => 'required|integer',
-            'category' => 'required|integer',
             'path_image' => 'string|max:255'
         ]);
 
@@ -62,7 +61,6 @@ class ProductController extends Controller
                 'price' => $request->price,
                 'description' => $request->description,
                 'stock' => $request->stock,
-                'category_id' => $request->category,
                 'path_image' => $request->path_image,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -71,7 +69,7 @@ class ProductController extends Controller
             $product->save();
 
             foreach ($request->category as $category) {
-                $productToCategory = ProductToCategory::create([
+                $categoryProduct = \App\Models\CategoryProduct::create([
                     'product_id' => $product->id,
                     'category_id' => $category,
                 ]);   
@@ -84,6 +82,8 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             logger($e->getMessage());
             DB::rollBack();
+
+            return redirect('admin/products')->with('error', $e->getMessage());
         }
     }
 
