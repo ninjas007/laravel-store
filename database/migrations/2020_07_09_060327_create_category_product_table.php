@@ -15,12 +15,14 @@ class CreateCategoryProductTable extends Migration
     {
         Schema::create('category_product', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id')
-                ->unisigned()
+            $table->foreignId('product_id')
+                ->constrained()
+                ->unsigned()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('category_id')
-                ->unisigned()
+            $table->foreignId('category_id')
+                ->constrained()
+                ->unsigned()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

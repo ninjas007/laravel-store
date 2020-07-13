@@ -35,7 +35,7 @@ class CartController extends Controller
     {
         $rules = [
             'product_id' => 'required|exists:products,id',
-            'qty' => 'required|integer|min:0'
+            'qty' => 'required|integer|min:1'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -75,7 +75,7 @@ class CartController extends Controller
     {
         $rules = [
             'rowid' => 'required',
-            'qty' => 'required|integer|min:0'
+            'qty' => 'required|integer|min:1'
         ];
 
         $validator = Validator::make($request->all(), $rules);

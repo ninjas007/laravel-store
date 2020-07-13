@@ -177,6 +177,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
@@ -184,12 +185,9 @@ class ProductController extends Controller
         $productIdArray = $request->input('id');
         try {
             DB::beginTransaction();
-            
             Product::whereIn('id', $productIdArray)->delete();
-            DB::table('category_product')->whereIn('product_id', $productIdArray)->delete();
-
             DB::commit();
-            
+
             return response()->json('Success deleted products', 200);
         } catch (\Exception $e) {
             logger($e->getMessage());

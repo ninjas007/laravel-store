@@ -49,13 +49,19 @@
                     Products
                 </a>
             </li>
-            <li class="app-sidebar__heading">Widgets</li>
+            <li class="app-sidebar__heading">Setting</li>
             <li>
-                <a href="dashboard-boxes.html">
-                    <i class="metismenu-icon pe-7s-display2"></i>
-                    Dashboard Boxes
+                <a href="{{ url('admin/payments') }}" class="{{ (request()->segment(2) == 'payments') ? 'mm-active' : '' }}">
+                    <i class="metismenu-icon pe-7s-cash"></i>
+                    Payments
                 </a>
             </li>
+            {{-- <li>
+                <a href="{{ url('admin/shippings') }}" class="{{ (request()->segment(2) == 'setting') ? 'mm-active' : '' }}">
+                    <i class="metismenu-icon fa fa-truck"></i>
+                    Shipping
+                </a>
+            </li> --}}
         </ul>
     </div>
 </div>
