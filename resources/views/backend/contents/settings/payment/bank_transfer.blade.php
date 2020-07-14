@@ -37,7 +37,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="value[]" value="{{ $value['value'] }}" required>
                                         <div class="input-group-append">
-                                            <button class="btn btn-danger remove" type="button" id="button-addon2"><i class="fa fa-times"></i></button>
+                                            <button class="btn btn-danger remove" type="button"><i class="fa fa-times"></i></button>
                                         </div>
                                     </div>
                                 </div>

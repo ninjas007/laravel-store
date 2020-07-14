@@ -56,12 +56,12 @@
                     Payments
                 </a>
             </li>
-            {{-- <li>
-                <a href="{{ url('admin/shippings') }}" class="{{ (request()->segment(2) == 'setting') ? 'mm-active' : '' }}">
+            <li>
+                <a href="{{ url('admin/shippings') }}" class="{{ (request()->segment(2) == 'shippings') ? 'mm-active' : '' }}">
                     <i class="metismenu-icon fa fa-truck"></i>
-                    Shipping
+                    Shippings
                 </a>
-            </li> --}}
+            </li>
         </ul>
     </div>
 </div>

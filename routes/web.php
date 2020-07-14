@@ -58,7 +58,7 @@ Route::prefix('admin')->group(function() {
 		Route::get('edit/{id}', 'Admin\PaymentController@edit');
 		Route::put('update/{id}', 'Admin\PaymentController@update');
 	});
-	// Route payments
+	// Route shippings
 	Route::prefix('shippings')->group(function() {
 		Route::get('/', 'Admin\ShippingController@index');
 		Route::get('edit/{id}', 'Admin\ShippingController@edit');
