@@ -56,7 +56,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('admin/categories')->with('success', 'Success added category');
+        return redirect('admin/categories')->with('success', 'Berhasil menambah kategori');
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoryController extends Controller
 
         // check already category name other row
         if (Category::where('name', $request->name)->where('uuid', '!=', $id)->exists()) {
-            return redirect('admin/categories')->with('error', 'Failed, Category name already exists other rows');
+            return redirect('admin/categories')->with('error', 'Failed, Kategori name sudah ada');
         }
 
         $category = Category::where('uuid', $id)->first();
@@ -113,7 +113,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('admin/categories')->with('success', 'Success updated category');
+        return redirect('admin/categories')->with('success', 'Sukses menambah kategori');
     }
 
     /**

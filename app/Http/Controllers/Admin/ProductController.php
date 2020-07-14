@@ -77,13 +77,13 @@ class ProductController extends Controller
 
             DB::commit();
 
-            return redirect('admin/products')->with('success', 'Success added product');
+            return redirect('admin/products')->with('success', 'Berhasil menambah produk');
 
         } catch (\Exception $e) {
             logger($e->getMessage());
             DB::rollBack();
 
-            return redirect('admin/products')->with('error', 'Error server, failed added product');
+            return redirect('admin/products')->with('error', 'Error server, Gagal menambah produk');
         }
     }
 
@@ -134,7 +134,7 @@ class ProductController extends Controller
 
         // check already product name other row
         if (Product::where('name', $request->name)->where('id', '!=', $id)->exists()) {
-            return redirect('admin/products')->with('error', 'Failed, Product name already exists other rows');
+            return redirect('admin/products')->with('error', 'Failed, Product name sudah ada');
         }
 
         $product = Product::find($id);
@@ -164,12 +164,12 @@ class ProductController extends Controller
 
             DB::commit();
             
-            return redirect('admin/products')->with('success', 'Success updated product');
+            return redirect('admin/products')->with('success', 'Berhasil mengupdate produk');
         } catch (\Exception $e) {
             logger($e->getMessage());
             DB::rollBack();
 
-            return redirect('admin/products')->with('error', 'Error server, failed added product');
+            return redirect('admin/products')->with('error', 'Error server, gagal menambah produk');
         }
 
     }
@@ -188,11 +188,11 @@ class ProductController extends Controller
             Product::whereIn('id', $productIdArray)->delete();
             DB::commit();
 
-            return response()->json('Success deleted products', 200);
+            return response()->json('Sukses menghapus produk', 200);
         } catch (\Exception $e) {
             logger($e->getMessage());
             DB::rollBack();
-            return response()->json('Failed deleted products', 400);
+            return response()->json('Gagal menghapus produk', 400);
         }
         
     }

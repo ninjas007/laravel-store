@@ -109,12 +109,12 @@ class PaymentController extends Controller
 
             DB::commit();
 
-            return redirect('admin/payments')->with('success', 'Berhasil mengupdate payment');
+            return redirect('admin/payments')->with('success', 'Berhasil mengupdate pembayaran');
         } catch (\Exception $e) {
             logger($e->getMessage());
             DB::rollBack();
 
-            return redirect('admin/payments')->with('error', 'Error server, Gagal mengupdate payment');
+            return redirect('admin/payments')->with('error', 'Error server, Gagal mengupdate pembayaran');
         }
     }
 
@@ -150,12 +150,12 @@ class PaymentController extends Controller
 
             DB::commit();
 
-            return redirect('admin/payments')->with('success', 'Berhasil mengupdate payment');
+            return redirect('admin/payments')->with('success', 'Berhasil mengupdate pembayaran');
         } catch (\Exception $e) {
             logger($e->getMessage());
             DB::rollBack();
 
-            return redirect('admin/payments')->with('error', 'Error server, Gagal mengupdate payment');
+            return redirect('admin/payments')->with('error', 'Error server, Gagal mengupdate pembayaran');
         }
     }
 }
