@@ -19,7 +19,7 @@ class CreatePaymentSettingsTable extends Migration
             $table->text('value');
             $table->foreignId('payment_id')
                 ->constrained('payments')
-                ->unisigned()
+                ->unsigned()
                 ->onUpdate('cascade');
         });
     }

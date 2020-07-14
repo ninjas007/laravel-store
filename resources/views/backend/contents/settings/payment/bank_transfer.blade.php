@@ -27,7 +27,6 @@
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title"><i class="metismenu-icon pe-7s-menu"></i> Setting</h5>
-                            @if ($payment['id'] == 1)
                             <button type="button" data-toggle="tooltip" title="Add Bank" data-placement="bottom" class="btn-shadow mb-3 btn btn-primary font-weight-bold" id="addBank">Add</button>
                             @foreach ($payment['payment_setting'] as $value)
                             <div class="py-2 row">
@@ -45,17 +44,6 @@
                             </div>
                             @endforeach
                             <div class="list-bank"></div>
-                            
-                            @elseif ($payment['id'] == 2)
-                            <div class="form-group">
-                                <label for="client_key">Client Key</label>
-                                <input type="text" class="form-control" name="client_key" id="client_key" value="{{ json_decode($payment['payment_setting'][0]['value'])->client_key }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="server_key">Server Key</label>
-                                <input type="text" class="form-control" name="server_key" id="server_key" value="{{ json_decode($payment['payment_setting'][0]['value'])->server_key }}">
-                            </div>
-                            @endif
 
                             <div class="form-group py-2">
                                 <label for="status">Status</label>
@@ -74,10 +62,8 @@
 @endsection
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script type="text/Javascript">
 $(document).ready(function() {
-$('#lfm').filemanager('image');
 $('#addBank').click(function(){
 $('.list-bank').after(`<div class="py-2 row">
     <div class="col-3">

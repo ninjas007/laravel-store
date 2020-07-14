@@ -28,6 +28,8 @@ Route::prefix('api')->group(function() {
 	Route::post('cart/update', 'Client\Api\CartController@update');
 	Route::get('cart/remove', 'Client\Api\CartController@destroy');
 	Route::get('region/states', 'Client\Api\CheckoutController@state');
+	// Route::get('region/provinces', 'Client\Api\RegionController@provinces');
+	// Route::get('region/cities', 'Client\Api\RegionController@cities');
 });
 
 Route::prefix('admin')->group(function() {	
@@ -55,6 +57,12 @@ Route::prefix('admin')->group(function() {
 		Route::get('/', 'Admin\PaymentController@index');
 		Route::get('edit/{id}', 'Admin\PaymentController@edit');
 		Route::put('update/{id}', 'Admin\PaymentController@update');
+	});
+	// Route payments
+	Route::prefix('shippings')->group(function() {
+		Route::get('/', 'Admin\ShippingController@index');
+		Route::get('edit/{id}', 'Admin\ShippingController@edit');
+		Route::put('update/{id}', 'Admin\ShippingController@update');
 	});
 	// Route file manager
 	Route::group(['prefix' => 'laravel-filemanager'], function () {
