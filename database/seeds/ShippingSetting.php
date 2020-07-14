@@ -27,17 +27,7 @@ class ShippingSetting extends Seeder
                 'name' => 'TIKI',
                 'value' => 'tiki',
                 'shipping_id' => 1
-            ],
-            [
-                'name' => 'FREE',
-                'value' => 'free',
-                'shipping_id' => 2
-            ],
-            [
-                'name' => 'COD',
-                'value' => 'cod',
-                'shipping_id' => 3
-            ],
+            ]
         ]);
     }
 }

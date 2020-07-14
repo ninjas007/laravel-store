@@ -29,7 +29,7 @@
                             <h5 class="card-title"><i class="metismenu-icon pe-7s-menu"></i> Setting</h5>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" value="{{ $shipping['name'] }}" required>
+                                <input type="text" class="form-control" name="name" id="name" value="{{ $shipping['name'] }}" required max="20">
                             </div>
                             <div class="form-group">
                                 <label for="api_key">Api Key</label>
@@ -50,7 +50,7 @@
                                     <select name="city_id" id="city_id" class="form-control" required>
                                         <option selected disabled>Choose..</option>
                                         @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}" {{ $city->id == $shipping['origin_city_id'] ? 'selected' : '' }}>{{ $city->city_name }}</option>
+                                        <option value="{{ $city->id }}" {{ $city->id == json_decode($shipping['setting'])->origin_city_id ? 'selected' : '' }}>{{ $city->city_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
