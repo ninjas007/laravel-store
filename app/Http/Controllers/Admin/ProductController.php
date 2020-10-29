@@ -48,6 +48,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:100|unique:products',
             'price' => 'required|integer',
+            'weight' => 'required|integer',
             'stock' => 'required|integer',
             'path_image' => 'string|max:255'
         ]);
@@ -110,8 +111,7 @@ class ProductController extends Controller
         $data['categories'] = Category::all();
 
         if (is_null($data['product'])) {
-            echo 'No data';
-            die;    
+            return view('backend.404');   
         }
 
         return view('backend.contents.products.edit', $data);
@@ -129,6 +129,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:100',
             'price' => 'required|integer',
+            'weight' => 'required|integer',
             'stock' => 'required|integer',
         ]);
 

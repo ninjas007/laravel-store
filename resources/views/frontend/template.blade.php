@@ -44,9 +44,24 @@
     }
 
   </style>
+  <style>
+        div#preloader {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          width: 100%;
+          height: 100%;
+          overflow: visible;
+          background: #000 url('/preloader.gif') no-repeat center center;
+          opacity: 0.5;
+        }
+    </style>
 </head>
 
 <body>
+
+  <div id="preloader"></div>
 
   @include('frontend.includes.navbar')
 
@@ -72,8 +87,8 @@
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
+    $('#preloader').fadeOut()
     new WOW().init();
-
   </script>
   @yield('scripts')
 </body>

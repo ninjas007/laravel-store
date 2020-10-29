@@ -4,7 +4,7 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
 @endsection
 @section('content')
-<form method="POST" action="{{ route('admin.products-store') }}">
+<form method="POST" action="{{ url('admin/products/store') }}">
     @csrf
     <div class="app-main__inner">
         <div class="app-page-title">

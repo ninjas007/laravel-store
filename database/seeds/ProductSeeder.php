@@ -18,7 +18,8 @@ class ProductSeeder extends Seeder
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg',
         	'price' => 139000,
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
-        	'stock' => 100
+        	'stock' => 100,
+            'weight' => 500,
         ]);
 
         DB::table('products')->insert([
@@ -27,7 +28,8 @@ class ProductSeeder extends Seeder
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
         	'price' => 99000,
-        	'stock' => 100
+        	'stock' => 100,
+            'weight' => 700,
         ]);
 
         DB::table('products')->insert([
@@ -36,7 +38,8 @@ class ProductSeeder extends Seeder
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
         	'price' => 139000,
-        	'stock' => 100
+        	'stock' => 100,
+            'weight' => 1000,
         ]);
 
         DB::table('products')->insert([
@@ -45,7 +48,8 @@ class ProductSeeder extends Seeder
         	'path_image' => 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente',
         	'price' => 139000,
-        	'stock' => 100
+        	'stock' => 100,
+            'weight' => 600,
         ]);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,14 @@ Route::prefix('api')->group(function() {
 	Route::post('cart/store', 'Client\Api\CartController@store');
 	Route::post('cart/update', 'Client\Api\CartController@update');
 	Route::get('cart/remove', 'Client\Api\CartController@destroy');
-	Route::get('region/states', 'Client\Api\CheckoutController@state');
-	// Route::get('region/provinces', 'Client\Api\RegionController@provinces');
+	Route::get('region/cities', 'Client\Api\RegionController@cities');
+	
 	// Route::get('region/cities', 'Client\Api\RegionController@cities');
+	Route::get('shippingMethods', 'Client\Api\ShippingController@shippingMethods');
+	// Route::get('shippingSetSession', 'Client\Api\ShippingController@shippingSetSession');
+	Route::post('setShippingMethod', 'Client\Api\ShippingController@setShippingMethod');
+
+	Route::get('courierCost', 'Client\Api\CourierController@cost');
 });
 
 Route::prefix('admin')->group(function() {	
@@ -38,7 +44,7 @@ Route::prefix('admin')->group(function() {
 	Route::prefix('products')->group(function() {
 		Route::get('/', 'Admin\ProductController@index');
 		Route::get('add', 'Admin\ProductController@create');
-		Route::post('store', 'Admin\ProductController@store')->name('admin.products-store');
+		Route::post('store', 'Admin\ProductController@store');
 		Route::get('edit/{id}', 'Admin\ProductController@edit');
 		Route::put('update/{id}', 'Admin\ProductController@update');
 		Route::get('delete', 'Admin\ProductController@destroy');
@@ -47,7 +53,7 @@ Route::prefix('admin')->group(function() {
 	Route::prefix('categories')->group(function() {
 		Route::get('/', 'Admin\CategoryController@index');
 		Route::get('add', 'Admin\CategoryController@create');
-		Route::post('store', 'Admin\CategoryController@store')->name('admin.categories-store');
+		Route::post('store', 'Admin\CategoryController@store');
 		Route::get('edit/{id}', 'Admin\CategoryController@edit');
 		Route::put('update/{id}', 'Admin\CategoryController@update');
 		Route::get('delete', 'Admin\CategoryController@destroy');
@@ -68,4 +74,27 @@ Route::prefix('admin')->group(function() {
 	Route::group(['prefix' => 'laravel-filemanager'], function () {
 	    \UniSharp\LaravelFilemanager\Lfm::routes();
 	});
+});
+
+Route::get('session', function () {
+    // Retrieve a piece of data from the session...
+    // $value = session('key');
+
+    // Specifying a default value...
+    // $value = session('key', 'default');
+
+    // Store a piece of data in the session...
+    session([
+    	'shipping_method' => [
+    		'shipping_code' => 'shipping_rajaongkir',
+    		'provice_id' => 1,
+    		'city_id' => 1
+    	],
+    ]);
+});
+
+Route::get('session-get', function(Request $request) {
+	$data = $request->session()->all();
+
+	dd($data);
 });

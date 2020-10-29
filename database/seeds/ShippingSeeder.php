@@ -18,7 +18,7 @@ class ShippingSeeder extends Seeder
         	'code' => 'shipping_rajaongkir',
             'note' => '',
             'setting' => json_encode([
-                'api_key' => '6e3521b3547076f10ab4605adce6c72c', 'account' => 'starter', 'origin_city_id' => 501 // 501 jogja
+                'api_key' => '76036a5cf68b0d69c3e0899a0a8fbc18', 'account' => 'starter', 'origin_city_id' => 501 // 501 jogja
             ]),
         	'status' => 1
         ]);

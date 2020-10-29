@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class CitySeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class CitySeeder extends Seeder
      */
     public function run()
     {
-        // $apikey = 'fa18cbdb6403b4f9ef4fbf626a25bd98';
+        // $apikey = '76036a5cf68b0d69c3e0899a0a8fbc18'; // starter
         $apikey = '6e3521b3547076f10ab4605adce6c72c';
 
         $response = Http::withHeaders([

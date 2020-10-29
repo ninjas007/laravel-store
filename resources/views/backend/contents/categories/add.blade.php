@@ -1,7 +1,7 @@
 @extends('backend.template')
 @section('content')
 <div class="app-main__inner">
-    <form action="{{ route('admin.categories-store') }}" method="POST">
+    <form action="{{ url('admin/categories/store') }}" method="POST">
         @csrf
         
         <div class="app-page-title">

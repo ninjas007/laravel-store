@@ -37,6 +37,7 @@
                         <thead>
                             <tr>
                                 <th>Key</th>
+                                <th>Name</th>
                                 <th>Status</th>
                                 <th width="30">Setting</th>
                             </tr>
@@ -45,6 +46,7 @@
                             @foreach ($shippings as $shipping)
                                 <tr>
                                     <td>{{ $shipping->key }}</td>
+                                    <td>{{ $shipping->name }}</td>
                                     <td>{{ $shipping->status == 1 ? 'Enabled' : 'Disabled' }}</td>
                                     <td class="text-center"><a href="{{ url('admin/shippings/edit/'.$shipping->id) }}" class="btn btn-sm btn-info"><i class="pe-7s-note font-weight-bold"></i></a></td>
                                 </tr>

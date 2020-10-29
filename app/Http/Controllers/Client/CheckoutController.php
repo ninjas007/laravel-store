@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use PragmaRX\Countries\Package\Countries;
 use App\Models\Payment;
+use App\Models\Shipping;
+use App\Models\Province;
 use Cart;
 
 class CheckoutController extends Controller
@@ -17,11 +18,9 @@ class CheckoutController extends Controller
     		return redirect('cart');	
     	}
 
-    	$countries = new Countries();
-
     	$data['title'] = 'Checkout';
-    	$data['countries'] = $countries->all()->pluck('name.common')->toArray();
     	$data['items'] = Cart::content();
+    	$data['provinces'] = Province::all();
         $data['payments'] = Payment::with('paymentSetting')
                                 ->where('status', 1)
                                 ->get()

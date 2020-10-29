@@ -52,7 +52,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="basicExampleNav">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto" style="overflow-x: auto;">
                 
                 @foreach ($categories as $category)
                 <li class="nav-item">

@@ -14,7 +14,7 @@ class ProvinceSeeder extends Seeder
      */
     public function run()
     {
-    	$apikey = 'fa18cbdb6403b4f9ef4fbf626a25bd98';
+    	$apikey = '76036a5cf68b0d69c3e0899a0a8fbc18';
 
     	$response = Http::withHeaders([
     	    'key' => $apikey,
