@@ -30,8 +30,8 @@ class ShippingController extends Controller
     public function setShippingMethod(Request $request)
     {
      	if ($this->validateShippingMethod($request)) {
-     		$cityDestination = City::where('id', (int) $request->city_destination_id)->get();
-            dd($request->city_destination_id);
+     		$cityDestination = City::where('id', (int) $request->city_destination_id)->first();
+            
      		if(is_null($cityDestination)) {
      			return false;
      		}
