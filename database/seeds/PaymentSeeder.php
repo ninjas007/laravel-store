@@ -24,5 +24,11 @@ class PaymentSeeder extends Seeder
         	'code' => 'payment_midtrans',
         	'status' => 1,
         ]);
+
+        DB::table('payments')->insert([
+            'name' => 'Bitcoin',
+            'code' => 'payment_bitcoin',
+            'status' => 1,
+        ]);
     }
 }

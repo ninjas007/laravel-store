@@ -46,6 +46,12 @@ class PaymentController extends Controller
         else if ((int)$id === 2) {
             return view('backend.contents.settings.payment.midtrans', $data);
         }
+        // route to bitcoin 
+        else if ((int)$id === 3) {
+            return view('backend.contents.settings.payment.bitcoin', $data);
+        } else {
+            return view('backend.404');
+        }
     }
 
     /**
@@ -64,6 +70,10 @@ class PaymentController extends Controller
         // update midtrans
         else if ((int)$id === 2) {
             return $this->updateMidtrans($request, $id);
+        }
+        // update bitcoin
+        else if ((int)$id === 3) {
+            return $this->updateBitcoin($request, $id);
         }
         else {
             return redirect('backend.404');
@@ -145,6 +155,45 @@ class PaymentController extends Controller
                 ->update(['value' => json_encode([
                             'client_key' => $request->client_key,
                             'server_key' => $request->server_key
+                        ])
+                ]);
+
+            DB::commit();
+
+            return redirect('admin/payments')->with('success', 'Berhasil mengupdate pembayaran');
+        } catch (\Exception $e) {
+            logger($e->getMessage());
+            DB::rollBack();
+
+            return redirect('admin/payments')->with('error', 'Error server, Gagal mengupdate pembayaran');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateBitcoin($request, $id)
+    {
+        $request->validate([
+            'btc_address' => 'required',
+            'status' => 'required'
+        ]);
+        
+        try {
+            DB::beginTransaction();
+
+            DB::table('payments')
+                ->where('id', $id)
+                ->update(['status' => $request->status]);
+
+            DB::table('payment_settings')
+                ->where('payment_id', $id)
+                ->update(['value' => json_encode([
+                            'btc_address' => $request->btc_address,
                         ])
                 ]);
 
