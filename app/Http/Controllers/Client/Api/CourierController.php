@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ShippingSetting;
 use App\Helpers\RajaOngkir;
-use App\Traits\WeightProductsOrderTrait;
+use App\Traits\ProductsOrderTrait;
 use Cart;
 
 class CourierController extends Controller
 {
-    use WeightProductsOrderTrait;
+    use ProductsOrderTrait;
 
     public function cost(Request $request)
     {
