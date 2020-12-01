@@ -67,13 +67,6 @@
 							<div class="alamat-pengiriman"></div>
 						</div>
 					</div>
-					<hr>
-					{{-- <div class="row mb-3">
-						<div class="col-12">
-							<p class="h5 py-2 text-success">Pembayaran</p>
-							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#paymentModal">Set Pembayaran</button>
-						</div>
-					</div> --}}
 				</div>
 			</div>
 		</div>
@@ -103,22 +96,50 @@
 					</li>
 				</ul>
 			</div>
-			{{-- <form class="card p-2">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username" aria-describedby="basic-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-primary btn-md waves-effect m-0" type="button">Redeem</button>
-					</div>
+			<button class="btn btn-success font-weight-bold btn-block" data-toggle="modal" data-target="#modalPayment">Bayar Sekarang</button>
+		</div>
+	</div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="modalPayment">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h5 class="modal-title">Pembayaran</h5>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="list-group">
+					@foreach ($payments as $payment)
+							<div class="form-check form-check-inline list-group-item list-group-item-action {{ str_replace(' ', '', $payment['name']) }}">
+							    <input class="form-check-input paymentMethod" type="radio" name="inlineRadioOptions" id="{{ $payment['code'] }}" onclick="valPaymentMethod(`{{ $payment['id'] }}`)">
+							    <label class="form-check-label label-payment-method" for="{{ $payment['code'] }}">{{ $payment['name'] }}</label>
+							</div>
+					@endforeach
 				</div>
-			</form> --}}
-			<button class="btn btn-success font-weight-bold btn-block" type="submit">Bayar Sekarang</button>
+				<div id="contentPayment"></div>
+			</div>
+			<!-- Modal footer -->
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-success btn-sm form-control" id="selesaikanPembayaran">Selesaikan Pembayaran</button>
+			</div>
 		</div>
 	</div>
 </div>
 @endsection
 @section('scripts')
+<style>
+	.label-payment-method:hover {
+		cursor: pointer;
+	}
+</style>
 <script type="text/Javascript">
 	
+	var paymentMethod = null;
+
+	// show modal shipping
 	$('#btnShippingModal').click(function(){
 		$.ajax({
 			url: '/api/shippingMethods',
@@ -148,7 +169,7 @@
 				})
 			}
 		})
-	})
+	});
 
 	// load data provinsi untuk alamat customer
 	$('#provincePayment').change(function(){
@@ -167,7 +188,54 @@
 				$('#cityPayment').html(option)
 			}
 		})
-	})
+	});
+
+	// active button payment
+	$('.form-check-label').click(function(){
+		$('.list-group-item-action').removeClass('active');
+		$(`.${$(this).html().replace(' ', '')}`).addClass('active');
+	});
+
+
+	// selesaikan pembayaran orderan
+	$('#selesaikanPembayaran').click(function(){
+		if (paymentMethod != null) {
+			$.ajax({
+				url: '/api/checkoutOrder',
+				headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+				dataType: 'json',
+				method: 'post',
+				data: {
+					payment_method_id: paymentMethod
+				},
+				beforeSend: function() {
+					$('#preloader').fadeIn();
+				},
+				success: function(response) {
+					$('#preloader').fadeOut();
+					$(location).attr('href', `checkout-success/${response.code_order}`);
+				}
+			});
+		}
+	});
+
+	// ambil keterangan transfer dari payment method
+	function valPaymentMethod(payment_method_id) {
+		paymentMethod = payment_method_id;
+		$.ajax({
+			url: '/api/getPayments',
+			dataType: 'html',
+			data: {
+				payment_method_id: payment_method_id
+			},
+			beforeSend: function() {
+				$('#contentPayment').html('<div class="text-center my-3">Loading...</div>')
+			},
+			success: function(response) {
+				$('#contentPayment').html(response)
+			}
+		})
+	}
 
 	// checkbox alamat pengiriman sama dengan alamat customer
 	function checkBoxPengiriman() {
@@ -245,6 +313,7 @@
 		})
 	}
 
+	// set pengiriman
 	function setShipping() {
 		$('#setShipping').click(function(){
 			city_destination_id = $('#cityShipping').val();
@@ -308,6 +377,10 @@
 							<li class="list-group-item d-flex justify-content-between lh-condensed">
 								<div class="my-0">Pengiriman ke </div>
 								<span class="text-muted">${response.city_destination}</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between lh-condensed">
+								<div class="my-0">Berat </div>
+								<span class="text-muted">${response.weight} gram</span>
 							</li>
 						</ul>
 						<ul class="list-group mb-3 z-depth-1" id="totalAll">

@@ -4,17 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class OrderTotal extends Model
 {
     public $timestamps = false;
 
     protected $fillable = [
         'order_detail_id',
-        'order_product_id',
+        'total_all',
+    ];
+
+    protected $hidden = [
+        'order_detail_id', 'id',
     ];
 
     public function orderDetail()
     {
-    	return $this->hasMany('App\Models\OrderDetail');
+    	return $this->belongsTo('App\Models\OrderDetail');
     }
 }

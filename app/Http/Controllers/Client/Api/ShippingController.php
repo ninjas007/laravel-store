@@ -9,12 +9,12 @@ use App\Models\ShippingSetting;
 use App\Models\Province;
 use App\Models\City;
 use App\Helpers\RajaOngkir;
-use App\Traits\ProductsOrderTrait;
+use App\Traits\OrderTrait;
 use Cart;
 
 class ShippingController extends Controller
 {
-	use ProductsOrderTrait;
+	use OrderTrait;
 
     public function shippingMethods(Request $request)
     {

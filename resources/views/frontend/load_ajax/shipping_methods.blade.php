@@ -53,21 +53,21 @@
                 </div>
                 <div class="form-group text-center metode-pengiriman" id="contentShippingMethod">
                     @foreach ($shippings as $shipping)
-                    @if ($shipping['id'] == 1)
-                    @foreach ($shippings[0]['shipping_setting'] as $value)
-                    <div class="form-check form-check-inline setting id-{{ $shipping['id'] }}">
-                        <input class="form-check-input courier"  type="radio" name="inlineRadioOptions" id="{{ $value['value'] }}" value="{{ $value['value'] }}" onclick="courierCost(`{{ $value['value'] }}`)">
-                        <label class="form-check-label" for="{{ $value['value'] }}">{{ $value['name'] }}</label>
-                    </div>
-                    @endforeach
-                    @else
-                    <div class="input-group mb-2 setting id-{{ $shipping['id'] }}" style="display: none;">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fa fa-hand-holding-usd"></i></div>
-                        </div>
-                        <input type="text" class="form-control" id="{{ $shipping['code'] }}" disabled value="Biaya Rp. {{ format_uang(json_decode($shipping['setting'])->cost) }}">
-                    </div>
-                    @endif
+                        @if ($shipping['id'] == 1)
+                            @foreach ($shippings[0]['shipping_setting'] as $value)
+                            <div class="form-check form-check-inline setting id-{{ $shipping['id'] }}">
+                                <input class="form-check-input courier"  type="radio" name="inlineRadioOptions" id="{{ $value['value'] }}" value="{{ $value['value'] }}" onclick="courierCost(`{{ $value['value'] }}`)">
+                                <label class="form-check-label" for="{{ $value['value'] }}">{{ $value['name'] }}</label>
+                            </div>
+                            @endforeach
+                        @else
+                            <div class="input-group mb-2 setting id-{{ $shipping['id'] }}" style="display: none;">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-hand-holding-usd"></i></div>
+                                </div>
+                                <input type="text" class="form-control" id="{{ $shipping['code'] }}" disabled value="Biaya Rp. {{ format_uang(json_decode($shipping['setting'])->cost) }}">
+                            </div>
+                        @endif
                     @endforeach
                 </div>
                 <div class="mt-3 form-group text-center" id="courierCost"></div>
