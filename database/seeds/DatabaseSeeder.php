@@ -22,5 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CitySeeder::class);
         $this->call(ShippingSeeder::class);
         $this->call(ShippingSetting::class);
+        // $this->call(OrderProductSeeder::class);
+        $this->call(OrderDetailsSeeder::class);
+        $this->call(OrderSeeder::class);
+        $this->call(OrderTotalSeeder::class);
     }
 }

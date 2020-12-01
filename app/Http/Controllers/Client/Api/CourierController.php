@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ShippingSetting;
 use App\Helpers\RajaOngkir;
-use App\Traits\WeightProductsOrderTrait;
+use App\Traits\OrderTrait;
 use Cart;
 
 class CourierController extends Controller
 {
-    use WeightProductsOrderTrait;
+    use OrderTrait;
 
     public function cost(Request $request)
     {
@@ -21,7 +21,7 @@ class CourierController extends Controller
 
         $rajaongkir = new RajaOngkir;
         $response = $rajaongkir->cost($destinationCityId, $courier, $weight);
-        
+
         if ($response['rajaongkir']['status']['code'] == 200) {
             $data['costs'] = $response['rajaongkir'];
             return view('frontend.load_ajax.courier_cost', $data);

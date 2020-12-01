@@ -9,12 +9,12 @@ use App\Models\ShippingSetting;
 use App\Models\Province;
 use App\Models\City;
 use App\Helpers\RajaOngkir;
-use App\Traits\WeightProductsOrderTrait;
+use App\Traits\OrderTrait;
 use Cart;
 
 class ShippingController extends Controller
 {
-	use WeightProductsOrderTrait;
+	use OrderTrait;
 
     public function shippingMethods(Request $request)
     {
@@ -43,11 +43,7 @@ class ShippingController extends Controller
 
      		if ($cost) {
                 
-                $items = Cart::content();
-                $total = 0;
-                foreach ($items as $item) {
-                    $total += $item->price * $item->qty;
-                }
+                $total = $this->getTotalProductsOrder();
 
      			$data = [
      				'city_destination' =>  $cityDestination->city_name,
@@ -56,14 +52,11 @@ class ShippingController extends Controller
      				'cost' => format_uang($cost),
                     'total_akhir' => format_uang($total + $cost),
                     'alamat_pengiriman' => $request->alamat,
-                    'weight' => 200
+                    'weight' => $weight
      			];
 
                 return response()->json($data);
-
-                return view('frontend.load_ajax.total_akhir', $data);
      		}
-
     	}
     }
 

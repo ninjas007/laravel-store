@@ -22,6 +22,10 @@ Route::get('/category/{slug}', 'Client\CategoryController@index');
 Route::get('/product/{slug}', 'Client\ProductController@index');
 Route::get('/cart', 'Client\CartController@index');
 Route::get('/checkout', 'Client\CheckoutController@index');
+Route::get('/checkout-success/{code_order}', 'Client\CheckoutController@success');
+Route::get('/invoice/{code_order}', 'Client\CheckoutController@invoice');
+// Route::get('test', 'Client\HomeController@pdf1');
+// Route::get('test-pdf', 'Client\HomeController@pdf');
 
 Route::prefix('api')->group(function() {
 	Route::get('cart', 'Client\Api\CartController@index');
@@ -30,12 +34,11 @@ Route::prefix('api')->group(function() {
 	Route::get('cart/remove', 'Client\Api\CartController@destroy');
 	Route::get('region/cities', 'Client\Api\RegionController@cities');
 	
-	// Route::get('region/cities', 'Client\Api\RegionController@cities');
 	Route::get('shippingMethods', 'Client\Api\ShippingController@shippingMethods');
-	// Route::get('shippingSetSession', 'Client\Api\ShippingController@shippingSetSession');
 	Route::post('setShippingMethod', 'Client\Api\ShippingController@setShippingMethod');
-
 	Route::get('courierCost', 'Client\Api\CourierController@cost');
+	Route::get('getPayments', 'Client\Api\CheckoutController@getPayments');
+	Route::post('checkoutOrder', 'Client\Api\CheckoutController@checkoutOrder');
 });
 
 Route::prefix('admin')->group(function() {	
@@ -77,12 +80,6 @@ Route::prefix('admin')->group(function() {
 });
 
 Route::get('session', function () {
-    // Retrieve a piece of data from the session...
-    // $value = session('key');
-
-    // Specifying a default value...
-    // $value = session('key', 'default');
-
     // Store a piece of data in the session...
     session([
     	'shipping_method' => [

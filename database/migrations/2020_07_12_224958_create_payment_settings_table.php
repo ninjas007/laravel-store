@@ -17,6 +17,7 @@ class CreatePaymentSettingsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('value');
+            $table->string('image', 255);
             $table->foreignId('payment_id')
                 ->constrained('payments')
                 ->unsigned()
